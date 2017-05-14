@@ -26,6 +26,18 @@ add_action ('init', 'shc_show_env_init') ;
 function
 shc_show_env_init ()
 {
+	/**
+	 * Filter whether the environment should be hidden in the Admin Bar
+	 *
+	 * @param bool $default Whether the environment should be hidden in the Admin Bar.
+	 *
+	 * @return bool Whether the environment should be hidden in the Admin Bar,
+	 *              with `true` meaning to hide the environment.
+	 */
+	if (apply_filters ('shc_show_env_hide', false)) {
+		return ;
+		}
+
 	// load our textdomain
 	load_plugin_textdomain ('shc-show-env', false, dirname (plugin_basename (__FILE__)) . '/languages') ;
 
