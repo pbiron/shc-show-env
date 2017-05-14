@@ -83,13 +83,13 @@ shc_show_env_id_env ()
 	// if one of our constants is defined (e.g., in wp-config.php), return that...
 	// without filtering it
 	if (defined ('SHC_SHOW_ENV_PROD')) {
-		return (array (SHC_show_env_PROD, 'prod')) ;
+		return (array (SHC_SHOW_ENV_PROD, 'prod')) ;
 		}
 	else if (defined ('SHC_SHOW_ENV_STAGING')) {
-		return (array (SHC_show_env_STAGING, 'staging')) ;
+		return (array (SHC_SHOW_ENV_STAGING, 'staging')) ;
 		}
 	else if (defined ('SHC_SHOW_ENV_DEV')) {
-		return (array (SHC_show_env_DEV, 'dev')) ;
+		return (array (SHC_SHOW_ENV_DEV, 'dev')) ;
 		}
 
 	/* translators: abbreviation for 'Production' */
