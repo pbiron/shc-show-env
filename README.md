@@ -24,6 +24,12 @@ Installation of this plugin works like any other plugin out there:
 
 ## Changelog
 
+### 0.1.1
+
+* Fixed typo in wp-config.php constants
+* Made CSS for .admin-color-sunrise .shc-show-env.staging more distinct
+* Added detailed Developer Notes
+
 ### 0.1
 
 * Initial commit
