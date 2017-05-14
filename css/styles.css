@@ -3,15 +3,6 @@
 	color: inherit ; /* limit change of color on :hover */
 }
 
-#wpadminbar:not(.mobile) .ab-top-menu .shc-show-env .ab-item
-{
-	/*
-	 * WP 4.8- needs this padding, it doesn't hurt in WP 4.8+
-	 */
-	padding-left: 10px ;
-	padding-right: 10px ;
-}
-
 /*
  * rules for the 'Prod' environment
  *
