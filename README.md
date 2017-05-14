@@ -101,7 +101,7 @@ my_show_env_enqueue ()
 }
 ```
 
-where `css/my_show_env_styles.css' contained:
+where `css/my_show_env_styles.css` contained:
 
 ```CSS
 #wpadminbar .ab-top-menu .shc-show-env.qa .ab-item,
