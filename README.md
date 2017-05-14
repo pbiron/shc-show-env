@@ -140,6 +140,20 @@ If one of these constants is defined, then it's value is used as the "name" of t
 
 If one of these 3 constants is defined, then the `shc_show_env_id_env` filter is **not** applied!
 
+### Conditionally hiding the environment in the Admin Bar
+
+You can also conditionally hide the indication of the environment in the Admin Bar by hooking into the `shc_show_env_hide` filter.  This filter should return a boolean, with `true` meaning "hide the environment in the admin bar".  For example,
+
+```PHP
+add_filter ('shc_show_env_hide', 'my_env_conditionally_hide') ;
+
+function
+my_env_conditionally_hide ($default)
+{
+	return (!current_user_can ('manage_options')) ;
+}
+```
+
 ## Ideas?
 Please let me know by creating a new [issue](https://github.com/pbiron/shc-add-env/issues/new) and describe your idea.  
 Pull Requests are welcome!

@@ -58,7 +58,7 @@ Out-of-the-box, 3 classes of environment are recongized:
 
 You can change that out-of-the-box behavior in 2 different ways:
 
-=== Hooking into the `shc_show_env_id_env` filter
+=== Hooking into the `shc_show_env_id_env` filter ===
 
 This filter should return an (indexed) array of strings.  The value in index 0 is the "name" of the environment to display in the Admin Bar.  The value in index 1 is the "class" of the environment (e.g., 'prod', 'staging', 'dev', or a custom class).  If you return a custom class, then you must also define CSS rules for how that custom class should be formatted.  See below.
 
@@ -108,7 +108,7 @@ my_show_env_enqueue ()
 }
 ```
 
-where `css/my_show_env_styles.css` contained:
+where `css/my_show_env_styles.css` contains:
 
 ```CSS
 #wpadminbar .ab-top-menu .shc-show-env.qa .ab-item,
@@ -146,6 +146,20 @@ define ('SHC_SHOW_ENV_DEV', 'Development') ;
 If one of these constants is defined, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these constants is defined (you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_DEV`.
 
 If one of these 3 constants is defined, then the `shc_show_env_id_env` filter is **not** applied!
+
+=== Conditionally hiding the environment in the Admin Bar ===
+
+You can also conditionally hide the indication of the environment in the Admin Bar by hooking into the `shc_show_env_hide` filter.  This filter should return a boolean, with `true` meaning "hide the environment in the admin bar".  For example,
+
+```PHP
+add_filter ('shc_show_env_hide', 'my_env_conditionally_hide') ;
+
+function
+my_env_conditionally_hide ($default)
+{
+	return (!current_user_can ('manage_options')) ;
+}
+```
 
 == Other Notes ==
 
