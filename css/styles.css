@@ -25,11 +25,11 @@
 
 /*
  * our prod background-color is REAL close the admin bar background-color in the sunrise
- * Admin Color Scheme, so put a black border around it to help it stands out
+ * Admin Color Scheme, so put a black border around it to help it stand out
  */
 .admin-color-sunrise #wpadminbar .ab-top-menu .shc-show-env.prod .ab-item
 {
-	border: 1px solid black ;
+	border: 2px solid black ;
 	box-sizing: border-box ;
 }
 
