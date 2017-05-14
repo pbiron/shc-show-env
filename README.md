@@ -51,7 +51,7 @@ Out-of-the-box, 3 classes of environment are recongized:
 
 You can change that out-of-the-box behavior in 2 different ways:
 
-=== Hooking into the `shc_show_env_id_env` filter
+### Hooking into the `shc_show_env_id_env` filter
 
 This filter should return an (indexed) array of strings.  The value in index 0 is the "name" of the environment to display in the Admin Bar.  The value in index 1 is the "class" of the environment (e.g., 'prod', 'staging', 'dev', or a custom class).  If you return a custom class, then you must also define CSS rules for how that custom class should be formatted.  See below.
 
@@ -125,7 +125,7 @@ The background-color you choose for your custom class(es) should be relatively d
 }
 ```
 
-=== Defining constants in wp-config.php ===
+### Defining constants in wp-config.php
 
 You can also change the out-of-the-box behavior by defining 1 of 3 different constants (e.g., in wp-config.php) as follows:
 
