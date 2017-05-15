@@ -24,6 +24,10 @@ Installation of this plugin works like any other plugin out there:
 
 ## Changelog
 
+### 0.5
+
+* Added `SHC_SHOW_ENV_(PROD|STAGING|DEV)` environment variables to env ID
+
 ### 0.1.2
 
 * Added `shc_show_env_hide` filter, to allow conditional hiding of the admin-bar node
