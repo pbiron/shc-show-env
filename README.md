@@ -4,9 +4,9 @@ Add an indication to the Admin Bar of the environment WordPress is running in (e
 ## Description
 **Note**: this plugin is current in a "pre-alpha-release" state, and so it's behavior is constantly changing.
 
-If you're like me, you often have multiple versions of the same WordPress site open in different browser windows, e.g.,  production in one window and development in another window.  And if you're like me, you have unwittingly edited content on the development environment thinking you were doing so in the production environment.  If so, then this plugin is for you!
+If you're like me, you often have multiple versions of the same WordPress site open in different browser windows, e.g.,  production in one window and development in another window.  And if you're like me, you have also unwittingly edited content in the production environment thinking you were doing so in the development environment.  If so, then this plugin is for you!
 
-This plugin adds an indication of the current environment to the Admin Bar that is easier to see than your browser's address bar.
+This plugin adds an indication of the current environment to the Admin Bar that is easier to see than examining the URL in your browser's address bar.
 
 ![Production](assets/screenshot-1.png?raw=true "Production")
 ![Staging](assets/screenshot-2.png?raw=true "Staging")
@@ -16,7 +16,7 @@ This plugin adds an indication of the current environment to the Admin Bar that 
 ## Installation
 Installation of this plugin works like any other plugin out there:
 
-1. Upload the zip file to the '/wp-content/plugins/' directory
+1. Upload the zip file to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 ### Minimum Requirements
@@ -53,7 +53,7 @@ Out-of-the-box, 3 classes of environment are recongized:
     * The node added to the Admin Bar has a red background (i.e., Stop/be carefull with any changes you make).
     * If neither a development nor staging environment is detected, then 'Prod' is displayed in the Admin Bar.
 
-You can change that out-of-the-box behavior in 2 different ways:
+You can change that out-of-the-box behavior in 3 different ways:
 
 ### Hooking into the `shc_show_env_id_env` filter
 
@@ -115,7 +115,7 @@ where `css/my_show_env_styles.css` contained:
 }
 ```
 
-The background-color you choose for your custom class(es) should be relatively distinct from the background-colors used for all of the admin color schemes shipped with WP (after all, the whole point of this plugin is to make the indicator added to the Admin Bar stand out so you can easily see it and know which environment you are logged into).  If the background-color you choose is not sufficiently distinct, you could add additional styling to help it stand out.  For example, the stylesheet included with this plugin contains the following rule:
+The background-color you choose for your custom class(es) should be relatively distinct from the background-colors used for all of the admin color schemes shipped with WP (after all, the whole point of this plugin is to make the indicator added to the Admin Bar stand out so you can easily see it and know which environment you are logged into).  If the background-color you choose is not sufficiently distinct, you should add additional styling to help it stand out.  For example, the stylesheet included with this plugin contains the following rule:
 
 ```CSS
 /*
@@ -140,9 +140,21 @@ define ('SHC_SHOW_ENV_STAGING', 'Staging') ;
 define ('SHC_SHOW_ENV_DEV', 'Development') ;
 ```
 
-If one of these constants is defined, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these constants is defined (you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_DEV`.
+If one of these constants is defined, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these constants is defined (BTW, you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_DEV`.
 
 If one of these 3 constants is defined, then the `shc_show_env_id_env` filter is **not** applied!
+
+### Setting web server environment variables
+
+You can also change the out-of-the-box behavior by defining 1 of 3 different environment variables (e.g., in the web server configuration) as follows:
+
+1. `SHC_SHOW_ENV_PROD`
+1. `SHC_SHOW_ENV_STAGING`
+1. `SHC_SHOW_ENV_DEV`
+
+If one of these web server environment variables is set, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these web server environment variables is set (BTW, you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_DEV`.
+
+If one of these 3 web server environment variables is set, then the constants discussed above are not examined nor is the `shc_show_env_id_env` filter is **not** applied!
 
 ### Conditionally hiding the environment in the Admin Bar
 

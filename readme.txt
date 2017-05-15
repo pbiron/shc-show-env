@@ -11,9 +11,9 @@ Add an indication to the Admin Bar of the environment WordPress is running in (e
 == Description ==
 **Note**: this plugin is current in a "pre-alpha-release" state, and so it's behavior is constantly changing.
 
-If you're like me, you often have multiple versions of the same WordPress site open in different browser windows, e.g.,  production in one window and development in another window.  And if you're like me, you have unwittingly edited content on the development environment thinking you were doing so in the production environment.  If so, then this plugin is for you!
+If you're like me, you often have multiple versions of the same WordPress site open in different browser windows, e.g.,  production in one window and development in another window.  And if you're like me, you have also unwittingly edited content in the production environment thinking you were doing so in the development environment.  If so, then this plugin is for you!
 
-This plugin adds an indication of the current environment to the Admin Bar that is easier to see than your browser's address bar.
+This plugin adds an indication of the current environment to the Admin Bar that is easier to see than examining the URL in your browser's address bar.
 
 == Installation ==
 Installation of this plugin works like any other plugin out there:
@@ -56,7 +56,7 @@ Out-of-the-box, 3 classes of environment are recongized:
     * The node added to the Admin Bar has a red background (i.e., Stop/be carefull with any changes you make).
     * If neither a development nor staging environment is detected, then 'Prod' is displayed in the Admin Bar.
 
-You can change that out-of-the-box behavior in 2 different ways:
+You can change that out-of-the-box behavior in 3 different ways:
 
 === Hooking into the `shc_show_env_id_env` filter ===
 This filter should return an (indexed) array of strings.  The value in index 0 is the "name" of the environment to display in the Admin Bar.  The value in index 1 is the "class" of the environment (e.g., 'prod', 'staging', 'dev', or a custom class).  If you return a custom class, then you must also define CSS rules for how that custom class should be formatted.  See below.
@@ -144,6 +144,18 @@ define ('SHC_SHOW_ENV_DEV', 'Development') ;
 If one of these constants is defined, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these constants is defined (you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_DEV`.
 
 If one of these 3 constants is defined, then the `shc_show_env_id_env` filter is **not** applied!
+
+
+=== Setting web server environment variables ===
+You can also change the out-of-the-box behavior by defining 1 of 3 different environment variables (e.g., in the web server configuration) as follows:
+
+1. `SHC_SHOW_ENV_PROD`
+1. `SHC_SHOW_ENV_STAGING`
+1. `SHC_SHOW_ENV_DEV`
+
+If one of these web server environment variables is set, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these web server environment variables is set (BTW, you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_DEV`.
+
+If one of these 3 web server environment variables is set, then the constants discussed above are not examined nor is the `shc_show_env_id_env` filter is **not** applied!
 
 === Conditionally hiding the environment in the Admin Bar ===
 You can also conditionally hide the indication of the environment in the Admin Bar by hooking into the `shc_show_env_hide` filter.  This filter should return a boolean, with `true` meaning "hide the environment in the admin bar".  For example,
