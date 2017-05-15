@@ -155,7 +155,9 @@ shc_show_env_id_env ()
 function
 shc_show_env_enqueue ()
 {
-	wp_enqueue_style ('shc_show_env', plugins_url ('css/styles.css', __FILE__)) ;
+	$suffix = SCRIPT_DEBUG ? '' : '.min';
+
+	wp_enqueue_style ('shc_show_env', plugins_url ("css/styles{$suffix}.css", __FILE__)) ;
 	
 	return ;
 }

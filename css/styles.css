@@ -1,5 +1,5 @@
 /**
- * rules for the 'Prod' environment
+ * rules for the 'prod' environment
  *
  * The backgroud-color for this is same as the border-left-color of #message.notice-error.
  */
@@ -20,7 +20,7 @@
 }
 
 /**
- * rules for the 'Staging' environment
+ * rules for the 'staging' environment
  *
  * The backgroud-color for this is same as the border-left-color of #message.notice-warning.
  */
@@ -31,7 +31,7 @@
 }
 
 /**
- * rules for the 'Dev' environment
+ * rules for the 'dev' environment
  *
  * The backgroud-color for this is same as the border-left-color of #message.notice-success.
  */
@@ -46,13 +46,14 @@
  */
 #wpadminbar:not(.mobile) .ab-top-menu .shc-show-env:hover .ab-item
 {
-	color: inherit ; /* limit change of color on :hover */
+	/* limit change of color on :hover */
+	color: inherit ;
 }
 
 /**
  * rules for smaller screens
  */
-@media screen and ( max-width: 782px )
+@media screen and (max-width: 782px)
 {
 	/* make sure our admin bar node shows on small screens */
 	#wpadminbar li#wp-admin-bar-shc-show-env
