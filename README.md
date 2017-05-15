@@ -2,7 +2,7 @@
 Add an indication to the Admin Bar of the environment WordPress is running in (e.g., Prod, Staging, Dev, etc)
 
 ## Description
-**Note**: this plugin is current in a "pre-alpha-release" state, and so it's behavior is constantly changing.
+**Note**: this plugin is current in a **beta-release** state, and so it's behavior is constantly changing.
 
 If you're like me, you often have multiple versions of the same WordPress site open in different browser windows, e.g.,  production in one window and development in another window.  And if you're like me, you have also unwittingly edited content in the production environment thinking you were doing so in the development environment.  If so, then this plugin is for you!
 

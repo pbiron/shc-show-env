@@ -3,7 +3,7 @@
  * Plugin Name: Show Environment in Admin Bar
  * Description: Add an indication to the Admin Bar of the environment WordPress is running in (e.g., Prod, Staging, Dev, etc)
  * Plugin URI: https://github.com/pbiron/shc-show-env
- * Version: 0.1.2
+ * Version: 0.5
  * Author: Paul V. Biron/Sparrow Hawk Computing
  * Author URI: http://sparrowhawkcomputing.com
  * Text Domain: shc-show-env
