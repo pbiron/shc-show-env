@@ -28,6 +28,10 @@ Installation of this plugin works like any other plugin out there:
 4. Custom &mdash; QA
 
 == Changelog ==
+= 0.5.1 =
+
+* Enqueue minified styles if `SCRIPT_DEBUG` is not defined
+
 = 0.5 =
 
 * Added `SHC_SHOW_ENV_(PROD|STAGING|DEV)` environment variables to env ID
