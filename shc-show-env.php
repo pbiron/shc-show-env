@@ -12,12 +12,13 @@
  * GitHub Plugin URI: https://github.com/pbiron/shc-show-env
  *
  * @copyright 2017 Paul V. Biron/Sparrow Hawk Computing
+ * @package shc-show-env
  */
 
 add_action ('init', 'shc_show_env_init') ;
 
 /**
- * Add appropriate actions
+ * Initialize by adding appropriate actions
  *
  * @return void
  *
@@ -68,6 +69,7 @@ shc_show_env_add_node ()
 {
 	global $wp_admin_bar ;
 
+	// get the name & "class" for the environment
 	list ($name, $class) = shc_show_env_id_env () ;
 	$class = str_replace (' ', '-', $class) ;
 
@@ -107,7 +109,8 @@ shc_show_env_id_env ()
 	/* translators: abbreviation for 'Production' */
 	$env = array (__('Prod', 'shc-show-env'), 'prod') ;
 
-	if (preg_match ('/^(127|192\.168|169\.254)\./', $_SERVER['SERVER_ADDR']) || 'localhost' === $_SERVER['SERVER_NAME']) {
+	if (preg_match ('/^(127|192\.168|169\.254)\./', $_SERVER['SERVER_ADDR']) ||
+			'localhost' === $_SERVER['SERVER_NAME']) {
 		/* translators: abbreviation for 'Localhost' */
 		$env = array (__('Local', 'shc-show-env'), 'dev') ;
 		}
@@ -118,16 +121,14 @@ shc_show_env_id_env ()
 	// @todo figured out a way to detect a staging env
 
 	/**
-	 * Filter the value of the environment
+	 * Filter the identified environment
 	 *
-	 * @param array $env 
-	 *     $0 The environment name to show in the Admin Bar
-	 *     $1 The class of the env.  One of 'prod', 'staging', 'dev', or a custom class
-	 * }
+	 * @param array $env {
+	 *     @type string $0 The environment name to show in the Admin Bar.
+	 *     @type string $0 The class of the env.  One of 'prod', 'staging', 'dev', or a custom class.
+	 *     }
 	 *
 	 * @return array Environment name in index 0 and environment class in index 1
-	 *
-	 * @todo add better descriptions for @param, including how to define new classes
 	 */
 	return (apply_filters ('shc_show_env_id_env', $env)) ;
 }

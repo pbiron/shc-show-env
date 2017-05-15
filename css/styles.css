@@ -1,9 +1,4 @@
-#wpadminbar:not(.mobile) .ab-top-menu .shc-show-env:hover .ab-item
-{
-	color: inherit ; /* limit change of color on :hover */
-}
-
-/*
+/**
  * rules for the 'Prod' environment
  *
  * The backgroud-color for this is same as the border-left-color of #message.notice-error.
@@ -14,7 +9,7 @@
 	background-color: #dc3232 ;
 }
 
-/*
+/**
  * our prod background-color is REAL close the admin bar background-color in the sunrise
  * Admin Color Scheme, so put a black border around it to help it stand out
  */
@@ -24,7 +19,7 @@
 	box-sizing: border-box ;
 }
 
-/*
+/**
  * rules for the 'Staging' environment
  *
  * The backgroud-color for this is same as the border-left-color of #message.notice-warning.
@@ -35,7 +30,7 @@
 	background-color: #ffba00 ;
 }
 
-/*
+/**
  * rules for the 'Dev' environment
  *
  * The backgroud-color for this is same as the border-left-color of #message.notice-success.
@@ -46,12 +41,19 @@
 	background-color: #46b450 ;
 }
 
+/**
+ * general purpose rules
+ */
+#wpadminbar:not(.mobile) .ab-top-menu .shc-show-env:hover .ab-item
+{
+	color: inherit ; /* limit change of color on :hover */
+}
+
+/**
+ * rules for smaller screens
+ */
 @media screen and ( max-width: 782px )
 {
-	/*
-	 * rules for smaller screens
-	 */
-
 	/* make sure our admin bar node shows on small screens */
 	#wpadminbar li#wp-admin-bar-shc-show-env
 	{
