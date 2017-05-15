@@ -94,6 +94,18 @@ shc_show_env_add_node ()
 function
 shc_show_env_id_env ()
 {
+	// if one of our environment variables is defined (e.g., in the web server configuration),
+	// return that...without filtering it
+	if (getenv ('SHC_SHOW_ENV_PROD')) {
+		return (array (getenv ('SHC_SHOW_ENV_PROD'), 'prod')) ;
+		}
+	else if (getenv ('SHC_SHOW_ENV_STAGING')) {
+		return (array (getenv ('SHC_SHOW_ENV_STAGING'), 'staging')) ;
+		}
+	else if (getenv ('SHC_SHOW_ENV_DEV')) {
+		return (array (getenv ('SHC_SHOW_ENV_DEV'), 'dev')) ;
+		}
+
 	// if one of our constants is defined (e.g., in wp-config.php), return that...
 	// without filtering it
 	if (defined ('SHC_SHOW_ENV_PROD')) {
