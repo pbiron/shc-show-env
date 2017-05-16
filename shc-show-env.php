@@ -15,6 +15,10 @@
  * @package shc-show-env
  */
 
+if (!defined ('ABSPATH')) {
+	die () ;
+	}
+
 add_action ('init', 'shc_show_env_init') ;
 
 /**
