@@ -2,8 +2,8 @@
 Contributors: pbiron
 Tags: admin, admin-bar
 Requires at least: 3.1
-Tested up to: 4.8
-Stable tag: 0.5
+Tested up to: 4.8.1
+Stable tag: 0.9
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z6D97FA595WSU
 
 Add an indication to the Admin Bar of the environment WordPress is running in (e.g., Prod, Staging, Dev, etc)
@@ -28,9 +28,13 @@ Installation of this plugin works like any other plugin out there:
 4. Custom &mdash; QA
 
 == Changelog ==
+= 0.9 =
+
+* PHP Coding Standards compliance
+
 = 0.5.2 =
 
-* Added !defined ('ABSPATH') security check
+* Added ! defined( 'ABSPATH' ) security check
 
 = 0.5.1 =
 
@@ -76,46 +80,36 @@ This filter should return an (indexed) array of strings.  The value in index 0 i
 For example,
 
 ```PHP
-add_filter ('shc_show_env_id_env', 'my_show_env_id_env') ;
+add_filter( 'shc_show_env_id_env', 'my_show_env_id_env' );
 
-function
-my_show_env_id_env ($env)
-{
+function my_show_env_id_env( $env ) {
 	// match staging.example.com
-	if (preg_match ('/\bstaging\b/i', $_SERVER['HTTP_HOST']) {
-		return (array ('Staging', 'staging')) ;
-		}
+	if ( preg_match( '/\bstaging\b/i', $_SERVER['HTTP_HOST'] ) {
+		return array( 'Staging', 'staging' );
+	}
 	// match qa.example.com
-	if (preg_match ('/\bqa\b/i', $_SERVER['HTTP_HOST']) {
-		return (array ('QA', 'qa')) ;
-		}
+	if ( preg_match( '/\bqa\b/i', $_SERVER['HTTP_HOST'] ) {
+		return array( 'QA', 'qa' );
+	}
 }
 ```
 
 If you return a custom class in the function you hook to `shc_show_env_id_env`, then you also need to enqueue CSS to style that custom class.  For example, to style the 'qa' custom class in the example above, you could do:
 
 ```PHP
-add_action ('init', 'my_show_env_init') ;
+add_action( 'init', 'my_show_env_init' );
 
-function
-my_show_env_init ()
-{
-	if (is_admin ()) {
-		add_action ('admin_enqueue_scripts', 'my_show_env_enqueue') ;
-		}
-	else if (is_admin_bar_showing ()) {
-		add_action ('wp_enqueue_scripts', 'my_show_env_enqueue') ;
-		}
-
-	return ;
+function my_show_env_init() {
+	if ( is_admin() ) {
+		add_action( 'admin_enqueue_scripts', 'my_show_env_enqueue' );
+	}
+	elseif ( is_admin_bar_showing() ) {
+		add_action( 'wp_enqueue_scripts', 'my_show_env_enqueue' );
+	}
 }
 
-function
-my_show_env_enqueue ()
-{
-	wp_enqueue_style ('my_show_env', plugins_url ('css/my_show_env_styles.css', __FILE__)) ;
-
-	return ;
+function my_show_env_enqueue() {
+	wp_enqueue_style( 'my_show_env', plugins_url( 'css/my_show_env_styles.css', __FILE__ ) );
 }
 ```
 
@@ -148,15 +142,14 @@ You can also change the out-of-the-box behavior by defining 1 of 3 different con
 
 ```PHP
 // you can define one of these 3 constants
-define ('SHC_SHOW_ENV_PROD', 'Production') ;
-define ('SHC_SHOW_ENV_STAGING', 'Staging') ;
-define ('SHC_SHOW_ENV_DEV', 'Development') ;
+define( 'SHC_SHOW_ENV_PROD', 'Production' );
+define( 'SHC_SHOW_ENV_STAGING', 'Staging' );
+define( 'SHC_SHOW_ENV_DEV', 'Development' );
 ```
 
 If one of these constants is defined, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these constants is defined (you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_DEV`.
 
 If one of these 3 constants is defined, then the `shc_show_env_id_env` filter is **not** applied!
-
 
 === Setting web server environment variables ===
 You can also change the out-of-the-box behavior by defining 1 of 3 different environment variables (e.g., in the web server configuration) as follows:
@@ -173,12 +166,10 @@ If one of these 3 web server environment variables is set, then the constants di
 You can also conditionally hide the indication of the environment in the Admin Bar by hooking into the `shc_show_env_hide` filter.  This filter should return a boolean, with `true` meaning "hide the environment in the admin bar".  For example,
 
 ```PHP
-add_filter ('shc_show_env_hide', 'my_env_conditionally_hide') ;
+add_filter( 'shc_show_env_hide', 'my_env_conditionally_hide' );
 
-function
-my_env_conditionally_hide ($default)
-{
-	return (!current_user_can ('manage_options')) ;
+function my_env_conditionally_hide( $default ) {
+	return ! current_user_can( 'manage_options' );
 }
 ```
 
