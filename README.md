@@ -67,7 +67,7 @@ You can change the out-of-the-box behavior by defining 1 of 5 different environm
 1. `SHC_SHOW_ENV_DEV`
 1. `SHC_SHOW_ENV_CUSTOM`
 
-If one of these environment variables is set, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these web server environment variables is set (BTW, you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_QA`, followed by `SHC_SHOW_ENV_DEV`, and finally `SHC_SHOW_ENV_CUSTOM`.
+If one of these environment variables is set, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these web server environment variables is set (BTW, _you shouldn't do that!_), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_QA`, followed by `SHC_SHOW_ENV_DEV`, and finally `SHC_SHOW_ENV_CUSTOM`.
 
 If one of these environment variables is set, then the PHP constants discussed below are not examined nor is the `shc_show_env_id_env` filter applied!
 
@@ -87,7 +87,7 @@ define( 'SHC_SHOW_ENV_CUSTOM', 'Preview' );
 
 ```
 
-If one of these PHP constants is defined, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these constants is defined (BTW, you shouldn't do that), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_QA`, followed by `SHC_SHOW_ENV_DEV`, and finally `SHC_SHOW_ENV_CUSTOM`.
+If one of these PHP constants is defined, then it's value is used as the "name" of the environment in the Admin Bar.  If more than one of these constants is defined (BTW, _you shouldn't do that!_), `SHC_SHOW_ENV_PROD` takes precedence, followed by `SHC_SHOW_ENV_STAGING`, followed by `SHC_SHOW_ENV_QA`, followed by `SHC_SHOW_ENV_DEV`, and finally `SHC_SHOW_ENV_CUSTOM`.
 
 If one of these PHP constants is defined, then the `shc_show_env_id_env` filter is **not** applied!
 
@@ -120,7 +120,7 @@ function my_show_env_id_env( $env ) {
 
 ### Enqueueing CSS rules for a custom class
 
-If you return a custom class from the function you hook to `shc_show_env_id_env`, then it is your responsibility to enqueue CSS to style that custom class.  If you use either the `SHC_SHOW_ENV_CUSTOM` environment variable or the `SHC_SHOW_ENV_CUSTOM` PHP constant, the CSS you enqueue should use the `custom` class.
+If you return a custom CSS class from the function you hook to `shc_show_env_id_env`, then it is your responsibility to enqueue CSS to style that custom class.  If you use either the `SHC_SHOW_ENV_CUSTOM` environment variable or the `SHC_SHOW_ENV_CUSTOM` PHP constant, the CSS you enqueue should use the `custom` class.
 
 For example, to style the 'preview' custom class in the example above, you could do:
 
@@ -139,7 +139,7 @@ function my_show_env_enqueue() {
 
 ```
 
-Notice that the call to `wp_enqueue_style()` above includes `array( 'shc-show-env' )` as the 3rd parameter.  This ensures that your custom CSS rules are enqueued **after** the styles from this plugin.  For more info, see [wp_enqueue_style()](https://developer.wordpress.org/reference/functions/wp_enqueue_style/). 
+Notice that the call to `wp_enqueue_style()` above includes `array( 'shc-show-env' )` as the 3rd parameter.  This ensures that your custom CSS rules are enqueued **after** the styles from this plugin.  For more info, see [wp_enqueue_style](https://developer.wordpress.org/reference/functions/wp_enqueue_style/). 
 
 `css/my_show_env_styles.css` should contain something like:
 
@@ -183,7 +183,7 @@ function my_env_conditionally_hide( $hide ) {
 ### 1.1
 
 * General code reorg
-* Added support for "QA" environment out-of-the-box
+* Added support for the QA environment
 * minor CSS fixes
 * changed the Text Domain (for localization) to 'show-environment-in-admin-bar', so that the [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/show-environment-in-admin-bar) service can be used.
 
