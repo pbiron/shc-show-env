@@ -1,3 +1,7 @@
 assets/screenshots.psd
 *.scss
 .sass-cache
+assets/css/scss
+.buildpath
+.project
+.settings/

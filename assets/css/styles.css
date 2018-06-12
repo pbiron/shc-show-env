@@ -1,0 +1,100 @@
+/* =general purpose rules */
+/*
+ * prevent change of color on :hover
+ */
+#wpadminbar:not(.mobile) .ab-top-menu .shc-show-env:hover .ab-item {
+  color: #eee;
+}
+
+/* =rules for each env */
+/*
+ * rules for the 'prod' environment
+ *
+ * The backgroud-color for this is same as the border-left-color of #message.notice-error.
+ */
+#wpadminbar .ab-top-menu .shc-show-env.prod .ab-item,
+#wpadminbar .ab-top-menu .shc-show-env.prod:hover .ab-item {
+  background-color: #dc3232;
+}
+
+/*
+ * rules for the 'staging' environment
+ *
+ * The backgroud-color for this is same as the border-left-color of #message.notice-warning.
+ */
+#wpadminbar .ab-top-menu .shc-show-env.staging .ab-item,
+#wpadminbar .ab-top-menu .shc-show-env.staging:hover .ab-item {
+  background-color: #ffba00;
+  color: #333;
+  font-weight: 600;
+}
+
+/*
+ * rules for the 'qa' environment
+ *
+ * The backgroud-color for this is same as the border-left-color of #message.notice-info.
+ */
+#wpadminbar .ab-top-menu .shc-show-env.qa .ab-item,
+#wpadminbar .ab-top-menu .shc-show-env.qa:hover .ab-item {
+  background-color: #00a0d2;
+}
+
+/*
+ * rules for the 'dev' environment
+ *
+ * The backgroud-color for this is same as the border-left-color of #message.notice-success.
+ */
+#wpadminbar .ab-top-menu .shc-show-env.dev .ab-item,
+#wpadminbar .ab-top-menu .shc-show-env.dev:hover .ab-item {
+  background-color: #46b450;
+}
+
+/* =Admin Color Scheme specific rules */
+/*
+ * @todo add description for this rule
+ */
+.admin-color-light #wpadminbar .ab-top-menu .shc-show-env:not(.staging) .ab-item {
+  color: #eee;
+}
+
+/*
+ * background-color for 'prod' is REAL close the admin bar background-color in the sunrise
+ * Admin Color Scheme, so put a black border around it to help it stand out
+ */
+.admin-color-sunrise #wpadminbar .ab-top-menu .shc-show-env.prod .ab-item {
+  border: 2px solid #000;
+  box-sizing: border-box;
+  /* compensate for the border, so the text stays vertically centered */
+  line-height: 28px;
+}
+
+/*
+ * background-color for 'qa' is REAL close the admin bar background-color in the blue
+ * Admin Color Scheme, so put a black border around it to help it stand out
+ */
+.admin-color-blue #wpadminbar .ab-top-menu .shc-show-env.qa .ab-item {
+  border: 2px solid #000;
+  box-sizing: border-box;
+  /* compensate for the border, so the text stays vertically centered */
+  line-height: 28px;
+}
+
+/* =rules for smaller screens */
+@media screen and (max-width: 782px) {
+  /* make sure our admin bar node shows on small screens */
+  #wpadminbar li#wp-admin-bar-shc-show-env {
+    display: block;
+  }
+
+  /* add some padding, equivlent to what is used by default for nodes in larger screens */
+  #wpadminbar li#wp-admin-bar-shc-show-env .ab-item {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* compensate for the border, so the text stays vertically centered */
+  .admin-color-sunrise #wpadminbar .ab-top-menu .shc-show-env.prod .ab-item,
+  .admin-color-blue #wpadminbar .ab-top-menu .shc-show-env.qa .ab-item {
+    line-height: 42px;
+  }
+}
