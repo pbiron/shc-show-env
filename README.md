@@ -100,7 +100,7 @@ You can change that out-of-the-box behavior in 3 different ways:
 
 ### Setting web server environment variables
 
-You can also change the out-of-the-box behavior by defining 1 of 5 different environment variables (e.g., in the web server configuration) as follows:
+You can change the out-of-the-box behavior by defining 1 of 5 different environment variables (e.g., in the web server configuration) as follows:
 
 1. `SHC_SHOW_ENV_PROD`
 1. `SHC_SHOW_ENV_STAGING`
@@ -134,7 +134,11 @@ If one of these PHP constants is defined, then the `shc_show_env_id_env` filter 
 
 ### Hooking into the shc_show_env_id_env filter
 
-This filter should return an (indexed) array of strings.  The value in index 0 is the "name" of the environment to display in the Admin Bar.  The value in index 1 is the "class" of the environment (e.g., 'prod', 'staging', 'qa', 'dev', or a custom class).  If you return a custom class, then it is your responsibility to enqueue CSS rules for how that custom class should be formatted.  See below.
+You can also change the out-of-the-box behavior by hooking into the `shc_show_env_id_env` filter.
+
+The function you hook into this filter should return an (indexed) array of strings.  The value in index 0 is the "name" of the environment to display in the Admin Bar.  The value in index 1 is the "class" of the environment (e.g., 'prod', 'staging', 'qa', 'dev', or a custom class).
+
+If you return a custom class, then it is your responsibility to enqueue CSS rules for how that custom class should be formatted.  See below.
 
 For example,
 
@@ -157,7 +161,9 @@ function my_show_env_id_env( $env ) {
 
 ### Enqueueing CSS rules for a custom class
 
-If you return a custom class in the function you hook to `shc_show_env_id_env` (or use either the `SHC_SHOW_ENV_CUSTOM` environment variable or the `SHC_SHOW_ENV_CUSTOM` PHP constant), then it is your responsibility to enqueue CSS to style that custom class.  For example, to style the 'preview' custom class in the example above, you could do:
+If you return a custom class from the function you hook to `shc_show_env_id_env`, then it is your responsibility to enqueue CSS to style that custom class.  If you use either the `SHC_SHOW_ENV_CUSTOM` environment variable or the `SHC_SHOW_ENV_CUSTOM` PHP constant, the CSS you enqueue should use the `custom` class.
+
+For example, to style the 'preview' custom class in the example above, you could do:
 
 ```PHP
 add_action( 'init', 'my_plugin_init' );
@@ -169,12 +175,14 @@ function my_plugin_init() {
 }
 
 function my_show_env_enqueue() {
-	wp_enqueue_style( 'my_show_env', plugins_url( 'css/my_show_env_styles.css', __FILE__ ) );
+	wp_enqueue_style( 'my_show_env', plugins_url( 'css/my_show_env_styles.css', __FILE__ ), array( 'shc-show-env' ) );
 }
 
 ```
 
-where `css/my_show_env_styles.css` contains something like:
+Notice that the call to `wp_enqueue_style()` above includes `array( 'shc-show-env' )` as the 3rd parameter.  This ensures that your custom CSS rules are enqueued **after** the styles from this plugin.  For more info, see [wp_enqueue_style](https://developer.wordpress.org/reference/functions/wp_enqueue_style/). 
+
+`css/my_show_env_styles.css` should contain something like:
 
 ```CSS
 #wpadminbar .ab-top-menu .shc-show-env.preview .ab-item,
