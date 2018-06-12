@@ -1,11 +1,15 @@
 # Show Environment in Admin Bar
-Add an indication to the Admin Bar of the environment WordPress is running in (e.g., Prod, Staging, QA, Dev, etc)
+Add an indication to the Admin Bar of the environment WordPress is running in (e.g., Prod, Staging, QA, Dev, etc).
 
 ## Description
 
-If you're like me, you often have multiple versions of the same WordPress site open in different browser windows, e.g.,  production in one window and development in another window.  And if you're like me, you have also unwittingly edited content in the production environment thinking you were doing so in the development environment.  If so, then this plugin is for you!
+If you're like me, you often have multiple versions of the same WordPress site open in different browser windows, e.g.,  production in one window and development in another window.
 
-This plugin adds an indication of the current environment to the Admin Bar that is easier to see than examining the URL in your browser's address bar.
+And if you're like me, you have also unwittingly edited content in the production environment thinking you were doing so in the development environment or vice versa.
+
+If so, then this plugin is for you!
+
+It adds an indication of the current environment to the Admin Bar that is easier to see than examining the URL in your browser's address bar.
 
 ![Production](assets/images/screenshot-1.png?raw=true "Production")
 ![Staging](assets/images/screenshot-2.png?raw=true "Staging")
@@ -14,62 +18,17 @@ This plugin adds an indication of the current environment to the Admin Bar that 
 ![Custom &mdash; QA](assets/images/screenshot-5.png?raw=true "Custom &mdash; Preview")
 
 ## Installation
+
 Installation of this plugin works like any other plugin out there:
 
 1. Upload the contents of the zip file to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 ### Minimum Requirements
-* WordPress 4.6 or greater (3.1 is you don't need a localized version)
 
-## Changelog
+* WordPress 4.6 or greater (3.1 if you don't need a localized version)
 
-### 1.1
-
-* General code reorg
-* Added support for "QA" environment out-of-the-box
-* minor CSS fixes
-
-### 1.0.1
-
-* Correct formatting in readme.txt
-* Removed GitHub Plugin URL reader
-
-### 1.0
-
-* Initial release on .org
-
-### 0.9
-
-* PHP Coding Standards compliance
-
-### 0.5.2
-
-* Added ! defined( 'ABSPATH' ) security check
-
-### 0.5.1
-
-* Enqueue minified styles if `SCRIPT_DEBUG` is not defined
-
-### 0.5
-
-* Added `SHC_SHOW_ENV_(PROD|STAGING|DEV)` environment variables to env ID
-
-### 0.1.2
-
-* Added `shc_show_env_hide` filter, to allow conditional hiding of the admin-bar node
-
-### 0.1.1
-
-* Fixed typo in wp-config.php constants
-* Made CSS for .admin-color-sunrise .shc-show-env.staging more distinct
-* Added detailed Developer Notes
-
-### 0.1
-
-* Initial commit
-
-## Developer Notes
+## Out-of-the-box behavior
 
 Out-of-the-box, 2 classes of environment are recongized:
 
@@ -84,6 +43,8 @@ Out-of-the-box, 2 classes of environment are recongized:
     * If WP is running on localhost (either a loopback IP address or LAN IP address), then 'Local' displays in the Admin Bar.
     * If WP_DEBUG is defined & true, then 'Dev' displays in the Admin Bar.
 
+## Customizing the out-of-the-box behavior
+
 Two additional enviroments are supported, but cannot be automatically detected:
 
 3. Staging
@@ -95,8 +56,6 @@ Two additional enviroments are supported, but cannot be automatically detected:
 
     * The node added to the Admin Bar has a blue background (i.e., "It's cool", changes you make won't affect the production site).
     * It is not possible to automatically detect a QA environment, so you will need to use the `SHC_SHOW_ENV_QA` environment variable, `SHC_SHOW_ENV_QA` PHP constant, or `shc_show_env_id_env` filter, see below.
-
-You can change that out-of-the-box behavior in 3 different ways:
 
 ### Setting web server environment variables
 
@@ -136,9 +95,9 @@ If one of these PHP constants is defined, then the `shc_show_env_id_env` filter 
 
 You can also change the out-of-the-box behavior by hooking into the `shc_show_env_id_env` filter.
 
-The function you hook into this filter should return an (indexed) array of strings.  The value in index 0 is the "name" of the environment to display in the Admin Bar.  The value in index 1 is the "class" of the environment (e.g., 'prod', 'staging', 'qa', 'dev', or a custom class).
+The function you hook into this filter should return an (indexed) array of strings.  The value in index 0 is the "name" of the environment to display in the Admin Bar.  The value in index 1 is the CSS class of the environment (e.g., 'prod', 'staging', 'qa', 'dev', or a custom class).
 
-If you return a custom class, then it is your responsibility to enqueue CSS rules for how that custom class should be formatted.  See below.
+If you return a custom CSS class, then it is your responsibility to enqueue CSS rules for how that custom class should be formatted.  See below.
 
 For example,
 
@@ -180,7 +139,7 @@ function my_show_env_enqueue() {
 
 ```
 
-Notice that the call to `wp_enqueue_style()` above includes `array( 'shc-show-env' )` as the 3rd parameter.  This ensures that your custom CSS rules are enqueued **after** the styles from this plugin.  For more info, see [wp_enqueue_style](https://developer.wordpress.org/reference/functions/wp_enqueue_style/). 
+Notice that the call to `wp_enqueue_style()` above includes `array( 'shc-show-env' )` as the 3rd parameter.  This ensures that your custom CSS rules are enqueued **after** the styles from this plugin.  For more info, see [wp_enqueue_style()](https://developer.wordpress.org/reference/functions/wp_enqueue_style/). 
 
 `css/my_show_env_styles.css` should contain something like:
 
@@ -218,6 +177,54 @@ function my_env_conditionally_hide( $hide ) {
 }
 
 ```
+
+## Changelog
+
+### 1.1
+
+* General code reorg
+* Added support for "QA" environment out-of-the-box
+* minor CSS fixes
+* changed the Text Domain (for localization) to 'show-environment-in-admin-bar', so that the [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/show-environment-in-admin-bar) service can be used.
+
+### 1.0.1
+
+* Correct formatting in readme.txt
+* Removed GitHub Plugin URL reader
+
+### 1.0
+
+* Initial release on .org
+
+### 0.9
+
+* PHP Coding Standards compliance
+
+### 0.5.2
+
+* Added ! defined( 'ABSPATH' ) security check
+
+### 0.5.1
+
+* Enqueue minified styles if `SCRIPT_DEBUG` is not defined
+
+### 0.5
+
+* Added `SHC_SHOW_ENV_(PROD|STAGING|DEV)` environment variables to env ID
+
+### 0.1.2
+
+* Added `shc_show_env_hide` filter, to allow conditional hiding of the admin-bar node
+
+### 0.1.1
+
+* Fixed typo in wp-config.php constants
+* Made CSS for .admin-color-sunrise .shc-show-env.staging more distinct
+* Added detailed Developer Notes
+
+### 0.1
+
+* Initial commit
 
 ## Ideas?
 Please let me know by creating a new [issue](https://github.com/pbiron/shc-show-env/issues/new) and describe your idea.  
