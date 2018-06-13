@@ -32,13 +32,10 @@ Installation of this plugin works like any other plugin out there:
 
 Out-of-the-box, 2 classes of environment are recongized:
 
-1. Production
-
+* Production
     * The node added to the Admin Bar has a red background (i.e., Stop/be carefull with any changes you make).
     * If neither a staging, QA, nor development environment is detected, then 'Prod' is displayed in the Admin Bar.
-
-2. Development
-
+* Development
     * The node added to the Admin Bar has a green background (i.e., Go ahead, it is safe to make changes).
     * If WP is running on localhost (either a loopback IP address or LAN IP address), then 'Local' displays in the Admin Bar.
     * If WP_DEBUG is defined & true, then 'Dev' displays in the Admin Bar.
@@ -47,13 +44,10 @@ Out-of-the-box, 2 classes of environment are recongized:
 
 Two additional enviroments are supported, but cannot be automatically detected:
 
-3. Staging
-
+* Staging
     * The node added to the Admin Bar has a yellow-ish background (i.e., Slow down, changes _might_ make it into the production site).
     * It is not possible to automatically detect a staging environment, so you will need to use the `SHC_SHOW_ENV_STAGING` environment variable, `SHC_SHOW_ENV_STAGING` PHP constant, or `shc_show_env_id_env` filter, see below.
-
-4. QA
-
+* QA
     * The node added to the Admin Bar has a blue background (i.e., "It's cool", changes you make won't affect the production site).
     * It is not possible to automatically detect a QA environment, so you will need to use the `SHC_SHOW_ENV_QA` environment variable, `SHC_SHOW_ENV_QA` PHP constant, or `shc_show_env_id_env` filter, see below.
 

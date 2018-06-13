@@ -25,30 +25,25 @@ It adds an indication of the current environment to the Admin Bar that is easier
 
 Out-of-the-box, 2 different environments are recognized:
 
-1. Production
+* Production
+    * The node added to the Admin Bar has a red background (i.e., Stop/be careful with any changes you make).
+    * If neither a staging, QA, nor development environment is detected, then `Prod` is displayed in the Admin Bar.
 
-* The node added to the Admin Bar has a red background (i.e., Stop/be careful with any changes you make).
-* If neither a staging, QA, nor development environment is detected, then `Prod` is displayed in the Admin Bar.
-
-2. Development
-
-* The node added to the Admin Bar has a green background (i.e., Go ahead, it is safe to make changes).
-* If WP is running on localhost (either a loopback IP address or LAN IP address), then `Local` displays in the Admin Bar.
-* If WP_DEBUG is defined & true, then `Dev` displays in the Admin Bar.
+* Development
+    * The node added to the Admin Bar has a green background (i.e., Go ahead, it is safe to make changes).
+    * If WP is running on localhost (either a loopback IP address or LAN IP address), then `Local` displays in the Admin Bar.
+    * If WP_DEBUG is defined & true, then `Dev` displays in the Admin Bar.
 
 == Customizing the out-of-the-box behavior ==
 
 Two additional environments are supported, but cannot be automatically detected:
 
-3. Staging
-
-* The node added to the Admin Bar has a yellow-ish background (i.e., Slow down, changes _might_ make it into the production site).
-* For information on how to enable this environment, see the [documentation](https://github.com/pbiron/shc-show-env/).
-
-4. QA
-
-* The node added to the Admin Bar has a blue background (i.e., "It's cool", changes you make won't affect the production site).
-* For information on how to enable this environment, see the [documentation](https://github.com/pbiron/shc-show-env/).
+* Staging
+    * The node added to the Admin Bar has a yellow-ish background (i.e., Slow down, changes _might_ make it into the production site).
+    * For information on how to enable this environment, see the [documentation](https://github.com/pbiron/shc-show-env/).
+* QA
+    * The node added to the Admin Bar has a blue background (i.e., "It's cool", changes you make won't affect the production site).
+    * For information on how to enable this environment, see the [documentation](https://github.com/pbiron/shc-show-env/).
 
 == Screenshots ==
 
