@@ -3,8 +3,8 @@
 Contributors: pbiron
 Tags: admin, admin-bar
 Requires at least: 4.6
-Tested up to: 4.9.6
-Stable tag: 1.1
+Tested up to: 6.6
+Stable tag: 1.2
 License: GPLv2 or later
 License URL: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z6D97FA595WSU
@@ -54,6 +54,10 @@ Two additional environments are supported, but cannot be automatically detected:
 5. Custom &mdash; Preview
 
 == Changelog ==
+
+= 1.2 (2024-07-15) =
+
+* Updated the priority at which `admin_bar_menu` is hooked into.  See [Trac 60685, comment 18](https://core.trac.wordpress.org/ticket/60685#comment:18) for why this change was made. 
 
 = 1.1 =
 

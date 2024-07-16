@@ -174,6 +174,11 @@ function my_env_conditionally_hide( $hide ) {
 
 ## Changelog
 
+### 1.2 (2024-07-15)
+
+* Updated the priority at which `admin_bar_menu` is hooked into.  See [Trac 60685, comment 18](https://core.trac.wordpress.org/ticket/60685#comment:18) for why this change was made. 
+
+
 ### 1.1
 
 * General code reorg

@@ -4,13 +4,13 @@
  * Plugin Name: Show Environment in Admin Bar
  * Description: Add an indication to the Admin Bar of the environment WordPress is running in (e.g., Prod, Staging, QA, Dev, etc)
  * Plugin URI: https://github.com/pbiron/shc-show-env
- * Version: 1.1
+ * Version: 1.2
  * Author: Paul V. Biron/Sparrow Hawk Computing
  * Author URI: http://sparrowhawkcomputing.com
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  *
- * @copyright 2017-2018 Paul V. Biron/Sparrow Hawk Computing
+ * @copyright 2017-2024 Paul V. Biron/Sparrow Hawk Computing
  * @package plugins
  * @subpackage shc-show-env
  */
@@ -40,7 +40,7 @@ class SHC_Show_Env
 	 *
 	 * @var number
 	 */
-	const version = 1.1;
+	const version = 1.2;
 
 	/**
 	 * Constrcutor.
@@ -85,7 +85,7 @@ class SHC_Show_Env
 
 		// priority=1 is to get it as far to the right as possible,
 		// hopefully to the right of my-account
-		add_action( 'admin_bar_menu', array( __CLASS__, 'add_admin_bar_node' ), 1 );
+		add_action( 'admin_bar_menu', array( __CLASS__, 'add_admin_bar_node' ), version_compare( $wp_version, '6.6-beta1', '>=' ) ? PHP_INT_MAX : PHP_INT_MIN );
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_styles' ) );
