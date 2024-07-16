@@ -4,7 +4,7 @@ Contributors: pbiron
 Tags: admin, admin-bar
 Requires at least: 4.6
 Tested up to: 6.6
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URL: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z6D97FA595WSU
@@ -54,6 +54,10 @@ Two additional environments are supported, but cannot be automatically detected:
 5. Custom &mdash; Preview
 
 == Changelog ==
+
+= 1.2.1 (2024-07-15) =
+
+* Bug fix: forgot to declare `$wp_version` as a global in `SHC_Show_Env:init()`.  D'oh!
 
 = 1.2 (2024-07-15) =
 
